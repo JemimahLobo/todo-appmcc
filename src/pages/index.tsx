@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import styles from "@/styles/Home.module.css";
 import { useState } from "react";
 import { AnimatePresence, MotionConfig } from "framer-motion";
-import TaskImput from "@/components/taskimput";
+import TaskImput from "@/components/TaskImput";
 
 
 export default function Home() {
