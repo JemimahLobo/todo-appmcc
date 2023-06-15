@@ -1,11 +1,12 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import { motion } from "framer-motion";
+import { color, motion } from "framer-motion";
 import styles from "@/styles/Home.module.css";
 import { useState } from "react";
 import { AnimatePresence, MotionConfig } from "framer-motion";
 import TaskImput from "@/components/TaskImput";
+import DiffTaskInput from "@/components/DiffTaskImput";
 
 
 export default function Home() {
@@ -23,7 +24,7 @@ export default function Home() {
           <h1>Todo - Jemimah</h1>
         </div>
         <div className={styles.Input}>
-          <TaskImput></TaskImput>
+          <DiffTaskInput></DiffTaskInput>
         </div>
         <div className={styles.ItemsContainer}>
         </div>
