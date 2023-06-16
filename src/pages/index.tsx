@@ -7,9 +7,25 @@ import { useState } from "react";
 import { AnimatePresence, MotionConfig } from "framer-motion";
 import TaskImput from "@/components/TaskImput";
 import DiffTaskInput from "@/components/DiffTaskImput";
+import TodoItem, { Todo } from "@/components/TodoItems";
+
+let defaultTodoItems: Todo[] = [
+  {
+    Id: "First",
+    Task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam faucibus faucibus nulla, ut molestie enim pellentesque nec. Nam pellentesque varius libero, a placerat nunc imperdiet a. Proin vestibulum purus vel purus pellentesque consectetur ac i",
+    completed: false,
+  },
+  {
+    Id: "Second",
+    Task: "Nulla at feugiat sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean bibendum urna diam, eu elementum ex scelerisque ac. Mauris sodales quam vel nisi molestie, quis cursus ligula fermentum. Nulla vel tellus eget ante mollis suscipit nec vel erat. ",
+    completed: false,
+  },
+];
 
 
 export default function Home() {
+
+  const [todoItems, setTodoItems] = useState<Todo[]>(defaultTodoItems);
 
   return (
     <>
@@ -22,11 +38,29 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.AppHeader}>
           <h1>Todo - Jemimah</h1>
+          <DiffTaskInput createItem={function (todoItem: Todo): void {
+            throw new Error("Function not implemented.");
+          } }></DiffTaskInput>
         </div>
         <div className={styles.Input}>
-          <DiffTaskInput></DiffTaskInput>
-        </div>
         <div className={styles.ItemsContainer}>
+        <AnimatePresence mode="popLayout">
+            {todoItems.map((item) => (
+              <motion.div
+                layout
+                layoutScroll
+                key={item.Id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <TodoItem
+                  item={item}
+                ></TodoItem>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
         </div>
       </main>
     </>
